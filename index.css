@@ -5,6 +5,10 @@ body {
 .title {
   font-size: 4rem;
   font-weight: 700;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 .desc {
   font-family: 'Roboto', sans-serif;
