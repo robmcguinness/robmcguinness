@@ -1,2 +1,3 @@
-# robmcguinness.com
-Here be dragons
+# michaeldimmitt.github.io/michaeldimmitt
+Minimalist profile page
+
