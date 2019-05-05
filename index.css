@@ -5,9 +5,6 @@ body {
 .title {
   font-size: 4rem;
   font-weight: 700;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   text-align: center;
 }
 .desc {
@@ -17,10 +14,34 @@ body {
   font-weight: 300;
   text-align: center;
 }
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.nav-item{
+  margin-bottom:-1px;
+  text-align:center;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+}
+.nav-link {
+  border:1px solid transparent;
+  border-top-left-radius:.25rem;
+  border-top-right-radius:.25rem
+}
 .nav-link {
   font-size: 1.5rem;
+  display: block;
+  padding: .5rem 1rem;
 }
-::selection {
-  background-color: rgb(0,102,204);
-  color: #FFF;
-}
+
+.nav-link:hover{color:#0056b3;}
