@@ -1,0 +1,59 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR, SITE_SOCIAL_HANDLE } from '@/constants.mjs';
+import { AstroSeo } from '@astrolib/seo';
+
+const {
+  title = SITE_TITLE,
+  image: _image,
+  description = SITE_DESCRIPTION,
+  noindex = false,
+  nofollow = false,
+  ogTitle = title,
+  ogType = 'website',
+} = Astro.props;
+
+/**
+ * Create a canonical URL based on the current path. This
+ * is important for SEO and to avoid duplicate content issues.
+ * @see {@link https://developers.google.com/search/docs/advanced/crawling/consolidate-duplicate-urls}
+ * @example
+ * For example, if your site is https://example.com and you're on /blog/post.html:
+ * The canonical URL would become https://example.com/blog/post
+ * An image path like "/images/preview.jpg" would become https://example.com/images/preview.jpg
+ */
+const image = _image && new URL(_image, Astro.site);
+const canonicalURL = new URL(
+  Astro.url.pathname.replace(/\.html$/, ''),
+  Astro.site,
+);
+---
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content={SITE_AUTHOR}>
+<meta name="twitter:site" content={SITE_SOCIAL_HANDLE}>
+<meta name="twitter:creator" content={SITE_SOCIAL_HANDLE}>
+<meta name="twitter:description" content={description}>
+<meta name="x-build-time" content={(new Date()).toUTCString()}>
+
+<link rel="sitemap" href="/sitemap-index.xml">
+<link rel="icon" type="image/svg+xml" sizes="any"        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>"/>
+
+<AstroSeo
+	title={title}
+	description={description}
+	canonical={canonicalURL.toString()}
+	noindex={noindex}
+	nofollow={nofollow}
+	openGraph={{
+		title: ogTitle,
+		description,
+		url: canonicalURL.toString(),
+		type: ogType,
+		images: image ? [
+			{
+				url: image.toString(),
+			},
+		] : undefined,
+	}}
+/>

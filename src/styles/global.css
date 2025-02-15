@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+@plugin '@tailwindcss/typography';
+
+/*
+
+& represents the element the styles will be applied to
+:where(.dark, .dark *) targets either:
+
+Elements with the .dark class directly
+Any descendant elements of elements with the .dark class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Ensure all links except navigation links are underlined with an orange line */
+a:not(nav a):not([role="navigation"] a) {
+  @apply underline decoration-orange-500 decoration-2 underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500;
+}
+
+/* Add hover and focus states for all links except navigation links */
+a:not(nav a):not([role="navigation"] a):hover,
+a:not(nav a):not([role="navigation"] a):focus {
+  @apply text-orange-500 decoration-orange-500;
+}
+
+/* Ensure navigation links are not underlined and have accessible focus/hover */
+nav a, [role="navigation"] a {
+  @apply no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-700;
+}
