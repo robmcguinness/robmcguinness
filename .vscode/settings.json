@@ -1,0 +1,27 @@
+{
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "dist/": true,
+    "lib/": true,
+    "node_modules/": true,
+    "**/dist": true,
+    "dist": true,
+    "artifacts": true,
+    "playwright-report": true,
+    ".astro": true,
+    "test-results": true
+  },
+  "explorerExclude.backup": {},
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}

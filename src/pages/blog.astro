@@ -1,0 +1,98 @@
+---
+import { getCollection } from "astro:content";
+import { PAGINATION_INT, SITE_TITLE } from "@/constants.mjs";
+import PageLayout from "../layouts/Layout.astro";
+
+// Get all blog posts
+const allPosts = await getCollection("blogs");
+
+// Sort posts by date, most recent first
+const sortedPosts = [...allPosts].sort(
+  (a, b) =>
+    new Date(b.data.publishDate).getTime() -
+    new Date(a.data.publishDate).getTime(),
+);
+
+// Limit posts per page based on the config
+const recentPosts = sortedPosts.slice(0, PAGINATION_INT);
+
+// Group posts by year - use local timezone to avoid date shifting
+const postsByYear = recentPosts.reduce<Record<string, typeof recentPosts>>(
+  (acc, post) => {
+    const date = new Date(post.data.publishDate);
+    const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+    const year = localDate.getFullYear().toString();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  },
+  {},
+);
+
+const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
+
+const meta = {
+  title: `${SITE_TITLE}`,
+  description:
+    "Articles and thoughts on web development, JavaScript, and developer experience.",
+};
+---
+
+<PageLayout {meta}>
+  <section class="pt-12 md:pt-16 mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+        Blog Posts
+      </h1>
+    </section>
+  <section class="space-y-12">
+      {
+        years.map((year) => (
+          <div>
+            <h2 class="text-3xl font-bold text-gray-700 dark:text-gray-300 mb-2">
+              {year}
+            </h2>
+            <ul class="space-y-2">
+              {postsByYear[year].map((post: (typeof recentPosts)[0]) => (
+                <li>
+                  <div class="flex items-baseline text-lg">
+                    <time class="w-20 text-gray-500 dark:text-gray-400">
+                      {(() => {
+                        const date = new Date(post.data.publishDate);
+                        const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+                        return localDate.toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "short",
+                            day: "numeric",
+                          },
+                        );
+                      })()}
+                    </time>
+                    <a
+                      href={`/blog/${post.id}`}
+                      class="focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 underline decoration-orange-500 decoration-2 underline-offset-2"
+                    >
+                      {post.data.title}
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      recentPosts.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Check back later for updates!
+          </p>
+        </div>
+      )
+    }
+  </section>
+</PageLayout>

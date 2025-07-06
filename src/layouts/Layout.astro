@@ -1,0 +1,45 @@
+---
+
+import '../styles/global.css';
+import MetaTags from '@/components/MetaTags.astro';
+import Container from '@/components/Container.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import { SkipLink } from 'accessible-astro-components';
+
+const { meta = {} } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <MetaTags {...meta}/>
+    <script is:inline>
+      function setDarkMode(doc) {
+        let theme = localStorage.getItem('theme');
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        if (theme === 'dark') {
+          doc.documentElement.classList.add('dark');
+        } else {
+          doc.documentElement.classList.remove('dark');
+        }
+      }
+      setDarkMode(document);
+      document.addEventListener('astro:before-swap', (event) => {
+        setDarkMode(event.newDocument);
+      });
+    </script>
+  </head>
+<body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen">
+    <SkipLink contentId="main-content" />
+    <Navigation />
+    <Container>
+      <main id="main-content">
+        <slot />
+      </main>
+    </Container>
+    <Footer />
+  </body>
+</html>

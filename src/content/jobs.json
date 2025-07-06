@@ -1,0 +1,106 @@
+[
+  {
+    "id": 0,
+    "company": "Propelus",
+    "location": "Jacksonville Beach, FL",
+    "logo": "/propelus_logo.jpeg",
+    "url": "https://propelus.com/",
+    "positions": [
+      {
+        "title": "VP of Technology",
+        "from": "May 2024",
+        "to": "Now"
+      },
+      {
+        "title": "VP of Architecture",
+        "from": "Jan 2022",
+        "to": "May 2024"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "company": "Availity",
+    "location": "Jacksonville, FL",
+    "url": "https://www.availity.com/",
+    "logo": "/availity_logo.jpeg",
+    "positions": [
+      {
+        "title": "Product Solutions Architect III",
+        "from": "Mar 2020",
+        "to": "Jan 2022"
+      },
+      {
+        "title": "Developer IV",
+        "from": "Mar 2015",
+        "to": "Mar 2020"
+      },
+      {
+        "title": "Developer III",
+        "from": "Aug 2012",
+        "to": "Mar 2016"
+      },
+      {
+        "title": "Developer II",
+        "from": "Jul 2012",
+        "to": "Aug 2012"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "company": "PTC",
+    "location": "Boston, MA",
+    "url": "https://www.ptc.com/",
+    "logo": "/ptcinc_logo.jpeg",
+    "positions": [
+      {
+        "title": "Software Development Engineer, Principal",
+        "from": "Dec 2010",
+        "to": "Aug 2012"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "company": "Availity",
+    "location": "Jacksonville, FL",
+    "url": "https://www.availity.com/",
+    "logo": "/availity_logo.jpeg",
+    "positions": [
+      {
+        "title": "Developer II",
+        "from": "Nov 2007",
+        "to": "Dec 2010"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "company": "Kemper Auto & Home Insurance",
+    "location": "Jacksonville, FL",
+    "url": "https://www.kemper.com/",
+    "logo": "/kemperinsurance_logo.jpeg",
+    "positions": [
+      {
+        "title": "Java Developer",
+        "from": "Oct 2006",
+        "to": "Sep 2007"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "company": "Hydus, Inc",
+    "location": "US",
+    "url": "https://www.ptc.com/",
+    "logo": "/hydus_inc_logo.jpeg",
+    "positions": [
+      {
+        "title": "Tibo Developer",
+        "from": "Jan 2005",
+        "to": "Sep 2006"
+      }
+    ]
+  }
+]

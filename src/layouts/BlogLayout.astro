@@ -1,0 +1,76 @@
+---
+import { SITE_TITLE } from "@/constants.mjs";
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+
+const meta = {
+  title: `${frontmatter.title} | ${SITE_TITLE}`,
+  description: frontmatter.description,
+  image: frontmatter.image,
+  ogType: "article",
+};
+
+// Format date - use local timezone to avoid date shifting
+const date = new Date(frontmatter.publishDate);
+const formattedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000).toLocaleDateString(
+  "en-US",
+  {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  },
+);
+---
+
+<Layout {meta}>
+  <article class="py-12 md:py-16">
+    <header class="mb-8">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
+      >
+        {frontmatter.title}
+      </h1>
+
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-4">
+        {frontmatter.description}
+      </p>
+
+      <div class="mb-2">
+        <time
+          datetime={frontmatter.publishDate.toISOString()}
+          class="text-sm text-gray-500 dark:text-gray-400"
+        >
+          {formattedDate}
+        </time>
+        {
+          frontmatter.tags && frontmatter.tags.length > 0 && (
+            <div class="mt-2 flex flex-wrap gap-2">
+              {frontmatter.tags.map((tag: string) => (
+                <span class="inline-block px-2 py-1 text-xs bg-gray-200 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </header>
+
+    {
+      frontmatter.image && (
+        <div class="mb-8 rounded-lg overflow-hidden">
+          <img
+            src={frontmatter.image}
+            alt={frontmatter.title}
+            class="w-full h-auto"
+          />
+        </div>
+      )
+    }
+
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <slot />
+    </div>
+  </article>
+</Layout>
