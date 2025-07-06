@@ -21,7 +21,7 @@ jobs:
         with:
           # path: . # The root location of your Astro project inside the repository. (optional)
           node-version: 24 # The Node version to use. Defaults to 20. (optional)
-          # package-manager: pnpm@latest # Detected from lockfile. (optional)
+          package-manager: pnpm@latest # Detected from lockfile. (optional)
 
   deploy:
     needs: build
