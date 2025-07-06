@@ -13,8 +13,8 @@ I originally built this personal website using HTML and Bootstrap, and recently 
 
 - [Content collections](https://docs.astro.build/en/guides/content-collections/) has very good DX. Type safe collection with Zod validation is the chef's kiss.
 - Built-in support for [MDX](https://docs.astro.build/en/guides/integrations-guide/mdx/) to mix React components with markdown.
-- [Zero JavaScript by default](https://docs.astro.build/en/concepts/no-js/) for fast, lightweight pages.
-- Seamless integration with [Tailwind CSS](https://docs.astro.build/en/guides/integrations-guide/tailwind/) for utility-first styling.
+- [Zero JavaScript by default](https://docs.astro.build/en/basics/astro-components/) for fast, lightweight pages.
+- Seamless integration with [Tailwind CSS](https://docs.astro.build/en/guides/styling/#tailwind) for utility-first styling.
 
 
 ## Gotchas
