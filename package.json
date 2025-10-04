@@ -25,7 +25,7 @@
     "@types/node": "^24.5.1",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
-    "astro": "^5.13.7",
+    "astro": "^5.14.1",
     "autoprefixer": "^10.4.21",
     "axe-html-reporter": "^2.2.11",
     "cheerio": "^1.1.2",
