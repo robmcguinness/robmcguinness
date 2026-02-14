@@ -64,6 +64,10 @@ const formattedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000
             src={frontmatter.image}
             alt={frontmatter.title}
             class="w-full h-auto"
+            width={1200}
+            height={630}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       )
