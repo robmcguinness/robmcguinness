@@ -1,9 +1,21 @@
 ---
-import { Building2 } from "lucide-react"
+import { Building2 } from "lucide-astro"
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import PageLayout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 const jobGroups = await getCollection("jobs");
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/*.{jpeg,jpg,png,webp,avif}",
+  { eager: true }
+);
+
+const imageMap = new Map<string, ImageMetadata>();
+for (const [path, mod] of Object.entries(imageModules)) {
+  const filename = path.split("/").pop()!;
+  imageMap.set(filename, mod.default);
+}
 
 const meta = {
   title: 'Rob McGuinness Personal Website',
@@ -31,15 +43,16 @@ const meta = {
       {
         jobGroups.map((jobGroup) => {
           const { company, positions, logo } = jobGroup.data;
+          const logoImage = logo ? imageMap.get(logo) : undefined;
 
           return (
             <div>
               <div class="flex items-center space-x-3 mb-4">
                 <div class="w-8 h-8 bg-gray-100 dark rounded-none flex items-center justify-center overflow-hidden">
-                  {logo ? (
-                    <Image src={`/images/${logo}`} alt={company + ' logo'} width={32} height={32} />
+                  {logoImage ? (
+                    <Image src={logoImage} alt={company + ' logo'} width={32} height={32} />
                   ) : (
-                    <Building2 className="w-4 h-4 text-gray-600" />
+                    <Building2 class="w-4 h-4 text-gray-600" />
                   )}
                 </div>
                 <h3 class="text-lg font-medium ">{company}</h3>

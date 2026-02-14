@@ -1,5 +1,4 @@
 import mdx from '@astrojs/mdx';
-import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
@@ -10,6 +9,7 @@ export default defineConfig({
   site: SITE_URL,
   srcDir: "./src",
   output: "static",
+  compressHTML: true,
   trailingSlash: "never",
   vite: {
     plugins: [
@@ -25,7 +25,6 @@ export default defineConfig({
   },
   integrations: [
     sitemap(),
-    react(),
     mdx({
       optimize: true,
       syntaxHighlight: "shiki",

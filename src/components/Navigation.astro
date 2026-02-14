@@ -1,6 +1,6 @@
 ---
 import { NAVIGATION_LINKS } from "@/constants.mjs";
-import { ExternalLink, Sun, Moon, Menu, X } from "lucide-react";
+import { ExternalLink, Sun, Moon, Menu, X } from "lucide-astro";
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "");
 
@@ -42,7 +42,7 @@ function isActiveLink(href: string) {
               rel="noopener noreferrer"
             >
               <span>{item.name}</span>
-              <ExternalLink className="ml-1 w-4 h-4 inline" aria-label="External link" />
+              <ExternalLink class="ml-1 w-4 h-4 inline" aria-label="External link" />
             </a>
           ) : (
             <a
@@ -70,8 +70,8 @@ function isActiveLink(href: string) {
         aria-label="Toggle dark mode"
         type="button"
       >
-        <Sun className="w-4 h-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute w-4 h-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Sun class="w-4 h-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Moon class="absolute w-4 h-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         <span class="sr-only">Toggle theme</span>
       </button>
     </div>
@@ -84,8 +84,8 @@ function isActiveLink(href: string) {
         aria-label="Toggle dark mode"
         type="button"
       >
-        <Sun className="w-4 h-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute w-4 h-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Sun class="w-4 h-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Moon class="absolute w-4 h-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         <span class="sr-only">Toggle theme</span>
       </button>
 
@@ -97,8 +97,8 @@ function isActiveLink(href: string) {
         aria-controls="mobile-menu"
         type="button"
       >
-        <Menu className="w-5 h-5 block" id="menu-icon" />
-        <X className="w-5 h-5 hidden" id="close-icon" />
+        <Menu class="w-5 h-5 block" id="menu-icon" />
+        <X class="w-5 h-5 hidden" id="close-icon" />
         <span class="sr-only">Toggle navigation menu</span>
       </button>
     </div>
@@ -124,7 +124,7 @@ function isActiveLink(href: string) {
               role="menuitem"
             >
               <span>{item.name}</span>
-              <ExternalLink className="ml-1 w-4 h-4 inline" aria-label="External link" />
+              <ExternalLink class="ml-1 w-4 h-4 inline" aria-label="External link" />
             </a>
           ) : (
             <a
@@ -270,9 +270,7 @@ function isActiveLink(href: string) {
     });
   }
 
-  // Initialize functionality when DOM is ready
-  document.addEventListener('DOMContentLoaded', () => {
-    initThemeToggle();
-    initMobileMenu();
-  });
+  // Initialize functionality directly (module scripts are deferred)
+  initThemeToggle();
+  initMobileMenu();
 </script>

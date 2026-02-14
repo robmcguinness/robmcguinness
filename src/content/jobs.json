@@ -3,7 +3,7 @@
     "id": 0,
     "company": "Propelus",
     "location": "Jacksonville Beach, FL",
-    "logo": "/propelus_logo.jpeg",
+    "logo": "propelus_logo.jpeg",
     "url": "https://propelus.com/",
     "positions": [
       {
@@ -23,7 +23,7 @@
     "company": "Availity",
     "location": "Jacksonville, FL",
     "url": "https://www.availity.com/",
-    "logo": "/availity_logo.jpeg",
+    "logo": "availity_logo.jpeg",
     "positions": [
       {
         "title": "Product Solutions Architect III",
@@ -52,7 +52,7 @@
     "company": "PTC",
     "location": "Boston, MA",
     "url": "https://www.ptc.com/",
-    "logo": "/ptcinc_logo.jpeg",
+    "logo": "ptcinc_logo.jpeg",
     "positions": [
       {
         "title": "Software Development Engineer, Principal",
@@ -66,7 +66,7 @@
     "company": "Availity",
     "location": "Jacksonville, FL",
     "url": "https://www.availity.com/",
-    "logo": "/availity_logo.jpeg",
+    "logo": "availity_logo.jpeg",
     "positions": [
       {
         "title": "Developer II",
@@ -80,7 +80,7 @@
     "company": "Kemper Auto & Home Insurance",
     "location": "Jacksonville, FL",
     "url": "https://www.kemper.com/",
-    "logo": "/kemperinsurance_logo.jpeg",
+    "logo": "kemperinsurance_logo.jpeg",
     "positions": [
       {
         "title": "Java Developer",
@@ -94,7 +94,7 @@
     "company": "Hydus, Inc",
     "location": "US",
     "url": "https://www.ptc.com/",
-    "logo": "/hydus_inc_logo.jpeg",
+    "logo": "hydus_inc_logo.jpeg",
     "positions": [
       {
         "title": "Tibo Developer",
