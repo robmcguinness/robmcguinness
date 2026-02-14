@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 concurrency:
@@ -18,9 +18,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout Git
         uses: actions/checkout@v4
-      - name: Install, build, and upload your site
+      - name: Install and build site
         uses: withastro/action@v3
         with:
           # path: . # The root location of your Astro project inside the repository. (optional)
