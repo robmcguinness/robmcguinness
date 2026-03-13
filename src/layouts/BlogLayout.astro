@@ -11,23 +11,19 @@ const meta = {
   ogType: "article",
 };
 
-// Format date - use local timezone to avoid date shifting
-const date = new Date(frontmatter.publishDate);
-const formattedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000).toLocaleDateString(
-  "en-US",
-  {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  },
-);
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+}).format(new Date(frontmatter.publishDate));
 ---
 
 <Layout {meta}>
   <article class="py-12 md:py-16">
     <header class="mb-8">
       <h1
-        class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
+        class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 text-wrap-balance"
       >
         {frontmatter.title}
       </h1>
@@ -62,11 +58,12 @@ const formattedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000
         <div class="mb-8 rounded-lg overflow-hidden">
           <img
             src={frontmatter.image}
-            alt={frontmatter.title}
+            alt=""
             class="w-full h-auto"
             width={1200}
             height={630}
-            loading="lazy"
+            loading="eager"
+            fetchpriority="high"
             decoding="async"
           />
         </div>

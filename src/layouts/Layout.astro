@@ -10,9 +10,11 @@ const { meta = {} } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <MetaTags {...meta}/>
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)">
     <script is:inline>
       function setDarkMode(doc) {
         let theme = localStorage.getItem('theme');
@@ -21,8 +23,10 @@ const { meta = {} } = Astro.props;
         }
         if (theme === 'dark') {
           doc.documentElement.classList.add('dark');
+          doc.documentElement.style.colorScheme = 'dark';
         } else {
           doc.documentElement.classList.remove('dark');
+          doc.documentElement.style.colorScheme = 'light';
         }
       }
       setDarkMode(document);

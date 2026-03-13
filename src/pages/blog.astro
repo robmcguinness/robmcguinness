@@ -42,7 +42,7 @@ const meta = {
 
 <PageLayout {meta}>
   <section class="pt-12 md:pt-16 mb-12">
-      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-wrap-balance">
         Blog Posts
       </h1>
     </section>
@@ -50,7 +50,7 @@ const meta = {
       {
         years.map((year) => (
           <div>
-            <h2 class="text-3xl font-bold text-gray-700 dark:text-gray-300 mb-2">
+            <h2 class="text-3xl font-bold text-gray-700 dark:text-gray-300 mb-2 text-wrap-balance">
               {year}
             </h2>
             <ul class="space-y-2">
@@ -58,17 +58,11 @@ const meta = {
                 <li>
                   <div class="flex items-baseline text-lg">
                     <time class="w-20 text-gray-500 dark:text-gray-400">
-                      {(() => {
-                        const date = new Date(post.data.publishDate);
-                        const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
-                        return localDate.toLocaleDateString(
-                          "en-US",
-                          {
-                            month: "short",
-                            day: "numeric",
-                          },
-                        );
-                      })()}
+                      {new Intl.DateTimeFormat("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        timeZone: "UTC",
+                      }).format(new Date(post.data.publishDate))}
                     </time>
                     <a
                       href={`/blog/${post.id}`}
@@ -83,8 +77,6 @@ const meta = {
           </div>
         ))
       }
-    </div>
-
     {
       recentPosts.length === 0 && (
         <div class="text-center py-12">

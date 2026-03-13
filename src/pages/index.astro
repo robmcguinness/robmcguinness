@@ -27,13 +27,13 @@ const meta = {
 
 <PageLayout meta={meta}>
   <section class="py-12 md:py-16">
-    <h1 class="text-4xl font-bold mb-8">Rob McGuinness</h1>
+    <h1 class="text-4xl font-bold mb-8 text-wrap-balance">Rob McGuinness</h1>
     <p class="text-xl md:text-2xl max-w-2xl">
       An engineering leader passionate about building high-performing teams with a strong focus on developer experience, clean architecture and maintainable code.
     </p>
   </section>
   <section>
-    <h2 class="text-3xl font-bold mb-8">Work Experience</h2>
+    <h2 class="text-3xl font-bold mb-8 text-wrap-balance">Work Experience</h2>
     <div class="space-y-8">
       {
         jobGroups.length === 0 && (
@@ -48,11 +48,11 @@ const meta = {
           return (
             <div>
               <div class="flex items-center space-x-3 mb-4">
-                <div class="w-8 h-8 bg-gray-100 dark rounded-none flex items-center justify-center overflow-hidden">
+                <div class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-none flex items-center justify-center overflow-hidden">
                   {logoImage ? (
                     <Image src={logoImage} alt={company + ' logo'} width={32} height={32} />
                   ) : (
-                    <Building2 class="w-4 h-4 text-gray-600" />
+                    <Building2 class="w-4 h-4 text-gray-600" aria-hidden="true" />
                   )}
                 </div>
                 <h3 class="text-lg font-medium ">{company}</h3>
@@ -68,9 +68,9 @@ const meta = {
                       </div>
                     )}
                     <div class="flex-1 min-w-0">
-                      <h4 class="font-medium ">{position.title}</h3>
+                      <h4 class="font-medium ">{position.title}</h4>
                       <span class="text-sm ">
-                        {position.from} - {position.to}
+                        {position.from} – {position.to}
                       </span>
                     </div>
                   </div>
