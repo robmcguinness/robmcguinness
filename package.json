@@ -25,7 +25,6 @@
     "astro": "^6.0.4",
     "axe-html-reporter": "^2.2.11",
     "cheerio": "^1.2.0",
-    "lucide-astro": "^0.556.0",
     "pino": "^10.3.1",
     "sharp": "^0.34.5",
     "start-server-and-test": "^2.1.5",
@@ -46,6 +45,8 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.7",
+    "@astrojs/compiler-rs": "^0.1.4",
+    "@lucide/astro": "^0.577.0",
     "accessible-astro-components": "^5.2.0",
     "typescript": "^5.9.3"
   }

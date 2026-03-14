@@ -11,6 +11,9 @@ export default defineConfig({
   output: "static",
   compressHTML: true,
   trailingSlash: "never",
+  experimental: {
+    rustCompiler: true,
+  },
   vite: {
     plugins: [
       tailwindcss({
