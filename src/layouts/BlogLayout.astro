@@ -58,7 +58,7 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
         <div class="mb-8 rounded-lg overflow-hidden">
           <img
             src={frontmatter.image}
-            alt=""
+            alt={`Cover image for ${frontmatter.title}`}
             class="w-full h-auto"
             width={1200}
             height={630}

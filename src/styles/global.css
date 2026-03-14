@@ -27,3 +27,12 @@ a:not(nav a):not([role="navigation"] a):focus {
 nav a, [role="navigation"] a {
   @apply no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-700;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

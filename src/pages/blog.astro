@@ -56,8 +56,11 @@ const meta = {
             <ul class="space-y-2">
               {postsByYear[year].map((post: (typeof recentPosts)[0]) => (
                 <li>
-                  <div class="flex items-baseline text-lg">
-                    <time class="w-20 text-gray-500 dark:text-gray-400">
+                  <div class="flex items-baseline text-lg gap-2">
+                    <time
+                      class="shrink-0 w-20 text-gray-500 dark:text-gray-400"
+                      datetime={new Date(post.data.publishDate).toISOString().split('T')[0]}
+                    >
                       {new Intl.DateTimeFormat("en-US", {
                         month: "short",
                         day: "numeric",
@@ -66,7 +69,7 @@ const meta = {
                     </time>
                     <a
                       href={`/blog/${post.id}`}
-                      class="focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 underline decoration-orange-500 decoration-2 underline-offset-2"
+                      class="min-w-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 underline decoration-orange-500 decoration-2 underline-offset-2"
                     >
                       {post.data.title}
                     </a>
