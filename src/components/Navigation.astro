@@ -17,7 +17,7 @@ function isActiveLink(href: string) {
   );
 }
 ---
-<nav class="border-b border-zinc-200 dark:border-zinc-800" aria-label="Main navigation">
+<nav class="border-b border-gray-200 dark:border-gray-800" aria-label="Main navigation">
   <div class="max-w-4xl mx-auto px-4 py-2 flex items-center justify-between">
     <a
       href="/"
@@ -36,7 +36,7 @@ function isActiveLink(href: string) {
           item.href.startsWith('http') ? (
             <a
               href={item.href}
-              class={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-1.5 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-zinc-800`}
+              class={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-1.5 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800`}
               tabindex="0"
               target="_blank"
               rel="noopener noreferrer"
@@ -49,8 +49,8 @@ function isActiveLink(href: string) {
               href={item.href}
               class={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-1.5 ${
                 isActiveLink(item.href)
-                  ? "bg-orange-50 dark:bg-neutral-900 border border-zinc-200 dark:border-zinc-800 text-orange-500"
-                  : "hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-zinc-800"
+                  ? "bg-orange-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-orange-500"
+                  : "hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
               }`}
               tabindex="0"
               aria-current={isActiveLink(item.href) ? "page" : undefined}
@@ -66,7 +66,7 @@ function isActiveLink(href: string) {
     <div class="hidden sm:flex items-center space-x-2">
       <button
         id="theme-toggle"
-        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-zinc-800"
+        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
         aria-label="Toggle dark mode"
         type="button"
       >
@@ -80,7 +80,7 @@ function isActiveLink(href: string) {
     <div class="flex items-center space-x-2 sm:hidden">
       <button
         id="mobile-theme-toggle"
-        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-zinc-800"
+        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
         aria-label="Toggle dark mode"
         type="button"
       >
@@ -91,7 +91,7 @@ function isActiveLink(href: string) {
 
       <button
         id="mobile-menu-toggle"
-        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-zinc-800"
+        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
         aria-label="Toggle mobile menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -107,7 +107,7 @@ function isActiveLink(href: string) {
   <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="hidden sm:hidden border-t border-zinc-200 dark:border-zinc-800"
+    class="hidden sm:hidden border-t border-gray-200 dark:border-gray-800"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="mobile-menu-toggle"
@@ -118,7 +118,7 @@ function isActiveLink(href: string) {
           item.href.startsWith('http') ? (
             <a
               href={item.href}
-              class={`flex items-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-2 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-zinc-800`}
+              class={`flex items-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-2 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800`}
               target="_blank"
               rel="noopener noreferrer"
               role="menuitem"
@@ -131,8 +131,8 @@ function isActiveLink(href: string) {
               href={item.href}
               class={`flex items-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-2 ${
                 isActiveLink(item.href)
-                  ? "bg-orange-50 dark:bg-neutral-900 border border-zinc-200 dark:border-zinc-800 text-orange-500"
-                  : "hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-zinc-800"
+                  ? "bg-orange-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-orange-500"
+                  : "hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
               }`}
               aria-current={isActiveLink(item.href) ? "page" : undefined}
               role="menuitem"

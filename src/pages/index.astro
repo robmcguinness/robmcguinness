@@ -37,7 +37,7 @@ const meta = {
     <div class="space-y-8">
       {
         jobGroups.length === 0 && (
-          <p class="text-gray-500">No job experience found.</p>
+          <p class="text-gray-500 dark:text-gray-400">No job experience found.</p>
         )
       }
       {
@@ -52,7 +52,7 @@ const meta = {
                   {logoImage ? (
                     <Image src={logoImage} alt={company + ' logo'} width={32} height={32} />
                   ) : (
-                    <Building2 class="w-4 h-4 text-gray-600" aria-hidden="true" />
+                    <Building2 class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" />
                   )}
                 </div>
                 <h3 class="text-lg font-medium min-w-0 truncate">{company}</h3>
@@ -69,7 +69,7 @@ const meta = {
                     )}
                     <div class="flex-1 min-w-0">
                       <h4 class="font-medium truncate">{position.title}</h4>
-                      <span class="text-sm ">
+                      <span class="text-sm text-gray-500 dark:text-gray-400">
                         {position.from} – {position.to}
                       </span>
                     </div>

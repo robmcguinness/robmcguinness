@@ -25,9 +25,10 @@ a:not(nav a):not([role="navigation"] a):focus {
 
 /* Ensure navigation links are not underlined and have accessible focus/hover */
 nav a, [role="navigation"] a {
-  @apply no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-700;
+  @apply no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500;
 }
 
+/* Reduced motion: !important is intentional to override all animation specificity */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
