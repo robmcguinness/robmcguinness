@@ -23,19 +23,13 @@
     "@tailwindcss/vite": "^4.2.1",
     "@types/node": "^24.10.1",
     "astro": "^6.0.4",
-    "autoprefixer": "^10.4.27",
     "axe-html-reporter": "^2.2.11",
     "cheerio": "^1.2.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "lucide-astro": "^0.556.0",
     "pino": "^10.3.1",
-    "postcss": "^8.5.8",
     "sharp": "^0.34.5",
     "start-server-and-test": "^2.1.5",
-    "tailwind-merge": "^3.5.0",
-    "tailwindcss": "^4.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss": "^4.2.1"
   },
   "engines": {
     "node": ">=24.0.0",
