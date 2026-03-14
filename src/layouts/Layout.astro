@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import MetaTags from '@/components/MetaTags.astro';
 import '../styles/global.css';
 import Container from '@/components/Container.astro';
@@ -13,6 +14,7 @@ const { meta = {} } = Astro.props;
 <html lang="en">
   <head>
     <MetaTags {...meta}/>
+    <Font cssVariable="--font-inter" preload />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)">
     <script is:inline>
