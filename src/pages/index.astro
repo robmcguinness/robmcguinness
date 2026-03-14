@@ -36,43 +36,28 @@ const meta = {
     <h2 class="text-3xl font-bold mb-8 text-wrap-balance">Work Experience</h2>
     <div class="space-y-8">
       {
-        jobGroups.length === 0 && (
-          <p class="text-gray-500 dark:text-gray-400">No job experience found.</p>
-        )
-      }
-      {
         jobGroups.map((jobGroup) => {
           const { company, positions, logo } = jobGroup.data;
           const logoImage = logo ? imageMap.get(logo) : undefined;
 
           return (
             <div>
-              <div class="flex items-center space-x-3 mb-4">
-                <div class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-none flex items-center justify-center overflow-hidden">
-                  {logoImage ? (
-                    <Image src={logoImage} alt={company + ' logo'} width={32} height={32} />
-                  ) : (
-                    <Building2 class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" />
-                  )}
-                </div>
-                <h3 class="text-lg font-medium min-w-0 truncate">{company}</h3>
+              <div class="flex items-center gap-3 mb-4">
+                {logoImage ? (
+                  <Image src={logoImage} alt={company + ' logo'} width={32} height={32} class="w-8 h-8" />
+                ) : (
+                  <Building2 class="w-5 h-5 text-gray-400" aria-hidden="true" />
+                )}
+                <h3 class="text-lg font-medium">{company}</h3>
               </div>
 
-              <div class="ml-11 space-y-3">
-                {positions.map((position, posIndex) => (
-                  <div class="flex items-start space-x-3">
-                    {positions.length > 1 && (
-                      <div class="flex flex-col items-center mt-1">
-                        <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
-                        {posIndex < positions.length - 1 && <div class="w-px h-8 bg-gray-300 mt-2"></div>}
-                      </div>
-                    )}
-                    <div class="flex-1 min-w-0">
-                      <h4 class="font-medium truncate">{position.title}</h4>
-                      <span class="text-sm text-gray-500 dark:text-gray-400">
-                        {position.from} – {position.to}
-                      </span>
-                    </div>
+              <div class="ml-11 space-y-2">
+                {positions.map((position) => (
+                  <div>
+                    <h4 class="font-medium">{position.title}</h4>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">
+                      {position.from} – {position.to}
+                    </span>
                   </div>
                 ))}
               </div>

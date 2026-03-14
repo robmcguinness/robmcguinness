@@ -6,92 +6,57 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
 
 function isActiveLink(href: string) {
   const normalizedHref = href.replace(/\/$/, "");
-  // Home link is only active on root
   if (normalizedHref === "") {
     return currentPath === "" || currentPath === "/";
   }
-  // For other links, match exact or subpage (but not root)
   return (
     currentPath === normalizedHref ||
     currentPath.startsWith(normalizedHref + "/")
   );
 }
+
+const isExternal = (href: string) => href.startsWith('http');
 ---
 <nav class="border-b border-gray-200 dark:border-gray-800" aria-label="Main navigation">
   <div class="max-w-4xl mx-auto px-4 py-2 flex items-center justify-between">
-    <a
-      href="/"
-      class="flex items-center space-x-1 no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500"
-      aria-label="Home"
-      tabindex="0"
-    >
-      <span class="text-lg font-bold sm:block">🔥 RM3</span>
-      <span class="hidden">Rob McGuinness</span>
+    <a href="/" class="text-lg font-bold no-underline hover:text-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500" aria-label="Home">
+      🔥 RM3
     </a>
 
     <!-- Desktop links -->
     <div class="hidden sm:flex items-center space-x-1">
       {
         NAVIGATION_LINKS.map((item) => (
-          item.href.startsWith('http') ? (
-            <a
-              href={item.href}
-              class={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-1.5 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800`}
-              tabindex="0"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>{item.name}</span>
-              <ExternalLink class="ml-1 w-4 h-4 inline" aria-hidden="true" />
-            </a>
-          ) : (
-            <a
-              href={item.href}
-              class={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-1.5 ${
-                isActiveLink(item.href)
-                  ? "bg-orange-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-orange-500"
-                  : "hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
-              }`}
-              tabindex="0"
-              aria-current={isActiveLink(item.href) ? "page" : undefined}
-            >
-              {item.name}
-            </a>
-          )
+          <a
+            href={item.href}
+            class={`inline-flex items-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-1.5 ${
+              isActiveLink(item.href) ? "text-orange-500" : "hover:text-orange-500"
+            }`}
+            aria-current={!isExternal(item.href) && isActiveLink(item.href) ? "page" : undefined}
+            {...(isExternal(item.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {item.name}
+            {isExternal(item.href) && <ExternalLink class="ml-1 w-3.5 h-3.5" aria-hidden="true" />}
+          </a>
         ))
       }
     </div>
 
-    <!-- Desktop Controls -->
-    <div class="hidden sm:flex items-center space-x-2">
+    <!-- Controls -->
+    <div class="flex items-center space-x-2">
       <button
         id="theme-toggle"
-        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
+        class="inline-flex items-center justify-center rounded-md p-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500"
         aria-label="Toggle dark mode"
         type="button"
       >
         <Sun class="w-4 h-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" aria-hidden="true" />
         <Moon class="absolute w-4 h-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" aria-hidden="true" />
-        <span class="sr-only">Toggle theme</span>
-      </button>
-    </div>
-
-    <!-- Mobile Controls -->
-    <div class="flex items-center space-x-2 sm:hidden">
-      <button
-        id="mobile-theme-toggle"
-        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
-        aria-label="Toggle dark mode"
-        type="button"
-      >
-        <Sun class="w-4 h-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" aria-hidden="true" />
-        <Moon class="absolute w-4 h-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" aria-hidden="true" />
-        <span class="sr-only">Toggle theme</span>
       </button>
 
       <button
         id="mobile-menu-toggle"
-        class="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
+        class="inline-flex items-center justify-center rounded-md p-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 hover:text-orange-500 sm:hidden"
         aria-label="Toggle mobile menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -99,7 +64,6 @@ function isActiveLink(href: string) {
       >
         <Menu class="w-5 h-5 block" id="menu-icon" aria-hidden="true" />
         <X class="w-5 h-5 hidden" id="close-icon" aria-hidden="true" />
-        <span class="sr-only">Toggle navigation menu</span>
       </button>
     </div>
   </div>
@@ -115,31 +79,18 @@ function isActiveLink(href: string) {
     <div class="px-4 py-2 space-y-1">
       {
         NAVIGATION_LINKS.map((item) => (
-          item.href.startsWith('http') ? (
-            <a
-              href={item.href}
-              class={`flex items-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-2 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800`}
-              target="_blank"
-              rel="noopener noreferrer"
-              role="menuitem"
-            >
-              <span>{item.name}</span>
-              <ExternalLink class="ml-1 w-4 h-4 inline" aria-hidden="true" />
-            </a>
-          ) : (
-            <a
-              href={item.href}
-              class={`flex items-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-2 ${
-                isActiveLink(item.href)
-                  ? "bg-orange-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-orange-500"
-                  : "hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-gray-800"
-              }`}
-              aria-current={isActiveLink(item.href) ? "page" : undefined}
-              role="menuitem"
-            >
-              {item.name}
-            </a>
-          )
+          <a
+            href={item.href}
+            class={`flex items-center rounded-md text-sm font-medium transition-colors no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 px-3 py-2 ${
+              isActiveLink(item.href) ? "text-orange-500" : "hover:text-orange-500"
+            }`}
+            aria-current={!isExternal(item.href) && isActiveLink(item.href) ? "page" : undefined}
+            role="menuitem"
+            {...(isExternal(item.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {item.name}
+            {isExternal(item.href) && <ExternalLink class="ml-1 w-3.5 h-3.5" aria-hidden="true" />}
+          </a>
         ))
       }
     </div>
@@ -147,27 +98,22 @@ function isActiveLink(href: string) {
 </nav>
 
 <script>
-  // Dark mode toggle functionality
   function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
-    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
 
     function toggleTheme() {
       const isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
 
-    // Set initial theme
     if (localStorage.getItem('theme') === 'dark' ||
         (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
     }
 
     themeToggle?.addEventListener('click', toggleTheme);
-    mobileThemeToggle?.addEventListener('click', toggleTheme);
   }
 
-  // Mobile menu functionality
   function initMobileMenu() {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -185,84 +131,56 @@ function isActiveLink(href: string) {
         menuIcon?.classList.add('hidden');
         closeIcon?.classList.remove('hidden');
         mobileMenuToggle?.setAttribute('aria-expanded', 'true');
-
-        // Set focus management for menu items
-        menuItems?.forEach((item, index) => {
-          item.setAttribute('tabindex', '0');
-        });
-
-        // Focus first menu item
+        menuItems?.forEach((item) => item.setAttribute('tabindex', '0'));
         (menuItems?.[0] as HTMLElement | undefined)?.focus();
       } else {
         mobileMenu?.classList.add('hidden');
         menuIcon?.classList.remove('hidden');
         closeIcon?.classList.add('hidden');
         mobileMenuToggle?.setAttribute('aria-expanded', 'false');
-
-        // Reset tabindex for all menu items
-        menuItems?.forEach(item => {
-          item.setAttribute('tabindex', '-1');
-        });
-
-        // Return focus to toggle button
+        menuItems?.forEach(item => item.setAttribute('tabindex', '-1'));
         mobileMenuToggle?.focus();
       }
     }
 
     function closeMenu() {
-      if (isMenuOpen) {
-        toggleMenu();
-      }
+      if (isMenuOpen) toggleMenu();
     }
 
-    // Toggle menu on button click
     mobileMenuToggle?.addEventListener('click', toggleMenu);
 
-    // Close menu on escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        closeMenu();
-      }
+      if (e.key === 'Escape' && isMenuOpen) closeMenu();
     });
 
-    // Handle keyboard navigation within mobile menu
     mobileMenu?.addEventListener('keydown', (e) => {
       if (!isMenuOpen) return;
-
-      const focusableItems = Array.from(menuItems || []);
-      const currentIndex = focusableItems.findIndex(item => item === document.activeElement);
+      const items = Array.from(menuItems || []);
+      const idx = items.findIndex(item => item === document.activeElement);
 
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault();
-          const nextIndex = (currentIndex + 1) % focusableItems.length;
-          (focusableItems[nextIndex] as HTMLElement | undefined )?.focus();
+          (items[(idx + 1) % items.length] as HTMLElement)?.focus();
           break;
         case 'ArrowUp':
           e.preventDefault();
-          const prevIndex = (currentIndex - 1 + focusableItems.length) % focusableItems.length;
-          (focusableItems[prevIndex] as HTMLElement | undefined)?.focus();
+          (items[(idx - 1 + items.length) % items.length] as HTMLElement)?.focus();
           break;
         case 'Home':
           e.preventDefault();
-          (focusableItems[0] as HTMLElement | undefined)?.focus();
+          (items[0] as HTMLElement)?.focus();
           break;
         case 'End':
           e.preventDefault();
-          (focusableItems[focusableItems.length - 1] as HTMLElement | undefined)?.focus();
+          (items[items.length - 1] as HTMLElement)?.focus();
           break;
         case 'Tab':
-          // Close menu when tabbing out
-          if (e.shiftKey && currentIndex === 0) {
-            closeMenu();
-          } else if (!e.shiftKey && currentIndex === focusableItems.length - 1) {
-            closeMenu();
-          }
+          if ((e.shiftKey && idx === 0) || (!e.shiftKey && idx === items.length - 1)) closeMenu();
           break;
       }
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (isMenuOpen && !mobileMenu?.contains(e.target as Node) && !mobileMenuToggle?.contains(e.target as Node)) {
         closeMenu();
@@ -270,7 +188,6 @@ function isActiveLink(href: string) {
     });
   }
 
-  // Initialize functionality directly (module scripts are deferred)
   initThemeToggle();
   initMobileMenu();
 </script>
