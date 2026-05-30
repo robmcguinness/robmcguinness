@@ -13,8 +13,8 @@
     "format": "biome format --write ."
   },
   "devDependencies": {
-    "@astrojs/mdx": "^5.0.3",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/mdx": "^6.0.1",
+    "@astrojs/sitemap": "^3.7.3",
     "@astrolib/seo": "1.0.0-beta.8",
     "@axe-core/playwright": "^4.11.1",
     "@biomejs/biome": "2.4.10",
@@ -22,7 +22,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^25.5.2",
-    "astro": "^6.1.4",
+    "astro": "^6.4.2",
     "axe-html-reporter": "^2.2.11",
     "cheerio": "^1.2.0",
     "pino": "^10.3.1",
@@ -44,8 +44,8 @@
     ]
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
-    "@astrojs/compiler-rs": "^0.1.6",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/compiler-rs": "^0.2.1",
     "@lucide/astro": "^1.7.0",
     "accessible-astro-components": "^5.2.0",
     "typescript": "^6.0.2"
