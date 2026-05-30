@@ -32,16 +32,7 @@
   },
   "engines": {
     "node": ">=24.0.0",
-    "pnpm": ">=10.0.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@biomejs/biome",
-      "@tailwindcss/oxide",
-      "esbuild",
-      "puppeteer",
-      "sharp"
-    ]
+    "pnpm": ">=11.0.0"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
